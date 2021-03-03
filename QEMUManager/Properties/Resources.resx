@@ -126,17 +126,8 @@
   <data name="LanguagePackFileExtension" xml:space="preserve">
     <value>ini</value>
   </data>
-  <data name="License" xml:space="preserve">
-    <value>MahApps.Metro (https://mahapps.com)
-https://github.com/MahApps/MahApps.Metro
-MIT License - https://github.com/MahApps/MahApps.Metro/blob/develop/LICENSE
-
-MahApps.Metro.IconPacks
-https://github.com/MahApps/MahApps.Metro.IconPacks
-MIT License - https://github.com/MahApps/MahApps.Metro.IconPacks/blob/develop/LICENSE
-
-Newtonsoft.Json (https://www.newtonsoft.com/json)
-https://github.com/JamesNK/Newtonsoft.Json
-MIT License - https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="License" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\License.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
 </root>
