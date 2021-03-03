@@ -52,7 +52,7 @@ namespace QEMUManager
         // Crimson, Amber, Yellow, Brown,
         // Olive, Steel, Mauve, Taupe, Sienna
         public String ThemeColor { get; set; } = "Cyan";
-        public Boolean SyncWindowsThemeMode { get; set; } = true;
+        public Boolean SyncWindowsThemeMode { get; set; } = false;
 
         #endregion
 
