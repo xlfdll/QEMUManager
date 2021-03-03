@@ -1,0 +1,142 @@
+[
+  {
+    "Identifier": "unsupported",
+    "Description": "Unsupported"
+  },
+  {
+    "Identifier": "i386",
+    "Description": "x86 (32-bit) PC"
+  },
+  {
+    "Identifier": "x86_64",
+    "Description": "x86-64 (64-bit) PC"
+  },
+  {
+    "Identifier": "arm",
+    "Description": "32-bit ARM"
+  },
+  {
+    "Identifier": "aarch64",
+    "Description": "64-bit ARM"
+  },
+  {
+    "Identifier": "mips",
+    "Description": "MIPS"
+  },
+  {
+    "Identifier": "mipsel",
+    "Description": "MIPS (Little-Endian)"
+  },
+  {
+    "Identifier": "mips64",
+    "Description": "MIPS64"
+  },
+  {
+    "Identifier": "mips64el",
+    "Description": "MIPS64 (Little-Endian)"
+  },
+  {
+    "Identifier": "sh4",
+    "Description": "Hitachi SH-4"
+  },
+  {
+    "Identifier": "sh4eb",
+    "Description": "Hitachi SH-4 (Big-Endian)"
+  },
+  {
+    "Identifier": "m68k",
+    "Description": "Motorola 68000 (Macintosh Quadra 800)"
+  },
+  {
+    "Identifier": "ppc",
+    "Description": "PowerPC"
+  },
+  {
+    "Identifier": "ppcemb",
+    "Description": "PowerPC Book-E"
+  },
+  {
+    "Identifier": "ppc64",
+    "Description": "IBM Power"
+  },
+  {
+    "Identifier": "s390x",
+    "Description": "IBM s390x"
+  },
+  {
+    "Identifier": "alpha",
+    "Description": "DEC Alpha"
+  },
+  {
+    "Identifier": "sparc",
+    "Description": "SPARC 32-bit"
+  },
+  {
+    "Identifier": "sparc64",
+    "Description": "SPARC 64-bit"
+  },
+  {
+    "Identifier": "riscv32",
+    "Description": "RISC-V (RV32GC)"
+  },
+  {
+    "Identifier": "riscv64",
+    "Description": "RISC-V (RV64GC)"
+  },
+  {
+    "Identifier": "hppa",
+    "Description": "HP/PA (PA-RISC)"
+  },
+  {
+    "Identifier": "or1k",
+    "Description": "OpenRISC"
+  },
+  {
+    "Identifier": "avr",
+    "Description": "Atmel AVR"
+  },
+  {
+    "Identifier": "cris",
+    "Description": "ETRAX CRIS (Axis Dev88)"
+  },
+  {
+    "Identifier": "lm32",
+    "Description": "LatticeMico32"
+  },
+  {
+    "Identifier": "moxie",
+    "Description": "Moxie"
+  },
+  {
+    "Identifier": "nios2",
+    "Description": "Altera Nios II (R1 Little-Endian)"
+  },
+  {
+    "Identifier": "tricore",
+    "Description": "Infineon TriCore"
+  },
+  {
+    "Identifier": "microblaze",
+    "Description": "Xilinx MicroBlaze"
+  },
+  {
+    "Identifier": "microblazeel",
+    "Description": "Xilinx MicroBlaze (Little-Endian)"
+  },
+  {
+    "Identifier": "xtensa",
+    "Description": "Tensilica Xtensa"
+  },
+  {
+    "Identifier": "xtensaeb",
+    "Description": "Tensilica Xtensa (Big-Endian)"
+  },
+  {
+    "Identifier": "unicore32",
+    "Description": "Unicore"
+  },
+  {
+    "Identifier": "rx",
+    "Description": "Renesas RX MCU"
+  }
+]
