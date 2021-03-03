@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=App.Title, FallbackValue=QEMU Manager}"
         Icon="pack://application:,,,/QEMUManager.ico" TitleCharacterCasing="Normal"
-        WindowStartupLocation="CenterScreen" Width="1280" Height="720">
+        WindowStartupLocation="CenterScreen" Width="1280" Height="720" MinWidth="1024" MinHeight="600">
 
     <Window.Resources>
         <Style TargetType="metroIconPacks:PackIconModern" BasedOn="{StaticResource {x:Type metroIconPacks:PackIconModern}}">
