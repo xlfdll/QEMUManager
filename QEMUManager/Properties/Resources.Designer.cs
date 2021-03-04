@@ -70,6 +70,25 @@ namespace QEMUManager.Properties {
         }
         
         /// <summary>
+        ///   MahApps.Metro (https://mahapps.com)
+        ///https://github.com/MahApps/MahApps.Metro
+        ///MIT License - https://github.com/MahApps/MahApps.Metro/blob/develop/LICENSE
+        ///
+        ///MahApps.Metro.IconPacks
+        ///https://github.com/MahApps/MahApps.Metro.IconPacks
+        ///MIT License - https://github.com/MahApps/MahApps.Metro.IconPacks/blob/develop/LICENSE
+        ///
+        ///Newtonsoft.Json (https://www.newtonsoft.com/json)
+        ///https://github.com/JamesNK/Newtonsoft.Json
+        ///MIT License - https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ExternalSources {
+            get {
+                return ResourceManager.GetString("ExternalSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Languages に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LanguagePackDirectoryName {
@@ -84,25 +103,6 @@ namespace QEMUManager.Properties {
         internal static string LanguagePackFileExtension {
             get {
                 return ResourceManager.GetString("LanguagePackFileExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   MahApps.Metro (https://mahapps.com)
-        ///https://github.com/MahApps/MahApps.Metro
-        ///MIT License - https://github.com/MahApps/MahApps.Metro/blob/develop/LICENSE
-        ///
-        ///MahApps.Metro.IconPacks
-        ///https://github.com/MahApps/MahApps.Metro.IconPacks
-        ///MIT License - https://github.com/MahApps/MahApps.Metro.IconPacks/blob/develop/LICENSE
-        ///
-        ///Newtonsoft.Json (https://www.newtonsoft.com/json)
-        ///https://github.com/JamesNK/Newtonsoft.Json
-        ///MIT License - https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string License {
-            get {
-                return ResourceManager.GetString("License", resourceCulture);
             }
         }
     }

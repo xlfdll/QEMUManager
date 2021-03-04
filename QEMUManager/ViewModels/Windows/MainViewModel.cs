@@ -61,7 +61,7 @@ namespace QEMUManager
                     (App.Current.MainWindow,
                     App.Metadata,
                     new ApplicationPackUri($"Images\\{typeof(App).Namespace + ".png"}"),
-                    Resources.License);
+                    Resources.ExternalSources);
 
                 aboutWindow.ShowDialog();
             }
