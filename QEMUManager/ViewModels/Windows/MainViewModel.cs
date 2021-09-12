@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 using Xlfdll.Windows.Presentation;
 using Xlfdll.Windows.Presentation.Dialogs;
@@ -54,7 +55,7 @@ namespace QEMUManager
         #region Commands
 
         public RelayCommand<Object> AboutCommand => new RelayCommand<Object>
-            (
+        (
             delegate
             {
                 AboutWindow aboutWindow = new AboutWindow
@@ -65,7 +66,30 @@ namespace QEMUManager
 
                 aboutWindow.ShowDialog();
             }
-            );
+        );
+
+        public RelayCommand<MainViewModel> NewMachineCommand => new RelayCommand<MainViewModel>
+        (
+            (MainViewModel mainViewModel) =>
+            {
+                NewMachineWizardViewModel newMachineWizardViewModel = new NewMachineWizardViewModel();
+
+                WizardWindow wizardWindow = new WizardWindow
+                    (new Uri[]
+                    {
+                        new ApplicationPackUri("Views/Pages/NewMachineWizard/NewMachineWelcomePage.xaml")
+                    })
+                {
+                    Owner = App.Current.MainWindow,
+                    DataContext = newMachineWizardViewModel
+                };
+
+                if (wizardWindow.ShowDialog() == true)
+                {
+                    
+                }
+            }
+        );
 
         #endregion
     }

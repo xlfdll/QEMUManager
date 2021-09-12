@@ -58,11 +58,31 @@
             </ToolBar.Resources>
 
             <Separator/>
-            <Button>
+            <Button Command="{Binding Path=NewMachineCommand}"
+                    CommandParameter="{Binding}">
                 <StackPanel>
                     <metroIconPacks:PackIconModern Kind="Add" Foreground="MediumSeaGreen"/>
                     <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.NewMachineCommand, FallbackValue=_New Machine}"/>
                 </StackPanel>
+            </Button>
+            <Button ContextMenuService.IsEnabled="False" Margin="0" Padding="0"
+                    Click="AddMachineButton_Click">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.AddExistingMachineCommand, FallbackValue=_Add Existing Machine...}"
+                                  Command="{Binding Path=AddExistingMachineCommand}"
+                                  CommandParameter="{Binding}"/>
+                        <MenuItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.ScanExistingMachineCommand, FallbackValue=_Scan Existing Machine...}"
+                                  Command="{Binding Path=ScanExistingMachineCommand}"
+                                  CommandParameter="{Binding}"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+                
+                <AccessText Text="&gt;">
+                    <AccessText.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </AccessText.LayoutTransform>
+                </AccessText>
             </Button>
             <Button>
                 <StackPanel>

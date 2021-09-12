@@ -84,10 +84,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\XDLibrary\Xlfdll.Core\Infrastructure\Collections\EnumerableExtensions.cs">
+      <Link>Base\Core\EnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\XDLibrary\Xlfdll.Windows.Presentation\Functions\ControlExtensions.cs">
+      <Link>Base\Windows\Presentation\Functions\ControlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\XDLibrary\Xlfdll.Windows.Presentation\Functions\WindowExtensions.cs">
+      <Link>Base\Windows\Presentation\Functions\WindowExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\XDLibrary\Xlfdll.Windows\API\WindowClass.cs">
+      <Link>Base\Windows\API\WindowClass.cs</Link>
+    </Compile>
+    <Compile Include="..\XDLibrary\Xlfdll.Windows\API\WindowStyles.cs">
+      <Link>Base\Windows\API\WindowStyles.cs</Link>
+    </Compile>
+    <Compile Include="Views\Pages\NewMachineWizard\NewMachineWelcomePage.xaml.cs">
+      <DependentUpon>NewMachineWelcomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Wizards\NewMachineWizardViewModel.cs" />
+    <Compile Include="Views\Windows\WizardWindow.xaml.cs">
+      <DependentUpon>WizardWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="..\XDLibrary\Xlfdll.Windows.Presentation\Controls\OverlayStatus.xaml">
       <Link>Base\Windows\Presentation\Controls\OverlayStatus.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\NewMachineWizard\NewMachineWelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AboutWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +185,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Windows\WizardWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
