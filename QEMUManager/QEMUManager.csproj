@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,6 +87,9 @@
     </ApplicationDefinition>
     <Compile Include="..\XDLibrary\Xlfdll.Core\Infrastructure\Collections\EnumerableExtensions.cs">
       <Link>Base\Core\EnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\XDLibrary\Xlfdll.Core\Infrastructure\Environment\SpecialFolders.cs">
+      <Link>Base\Core\SpecialFolders.cs</Link>
     </Compile>
     <Compile Include="..\XDLibrary\Xlfdll.Windows.Presentation\Functions\ControlExtensions.cs">
       <Link>Base\Windows\Presentation\Functions\ControlExtensions.cs</Link>

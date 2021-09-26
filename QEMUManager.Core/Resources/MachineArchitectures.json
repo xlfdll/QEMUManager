@@ -5,19 +5,19 @@
   },
   {
     "Identifier": "i386",
-    "Description": "x86 (32-bit) PC"
+    "Description": "x86 PC (32-bit)"
   },
   {
     "Identifier": "x86_64",
-    "Description": "x86-64 (64-bit) PC"
+    "Description": "x86-64 PC (64-bit)"
   },
   {
     "Identifier": "arm",
-    "Description": "32-bit ARM"
+    "Description": "ARM (32-bit)"
   },
   {
     "Identifier": "aarch64",
-    "Description": "64-bit ARM"
+    "Description": "ARM (64-bit)"
   },
   {
     "Identifier": "mips",
@@ -69,11 +69,11 @@
   },
   {
     "Identifier": "sparc",
-    "Description": "SPARC 32-bit"
+    "Description": "SPARC (32-bit)"
   },
   {
     "Identifier": "sparc64",
-    "Description": "SPARC 64-bit"
+    "Description": "SPARC (64-bit)"
   },
   {
     "Identifier": "riscv32",

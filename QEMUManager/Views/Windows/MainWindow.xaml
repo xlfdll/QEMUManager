@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:QEMUManager"
         xmlns:xdwpfctls="clr-namespace:Xlfdll.Windows.Presentation.Controls"
         mc:Ignorable="d"
-        Title="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=App.Title, FallbackValue=QEMU Manager}"
+        Title="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=App.Title, FallbackValue='QEMU Manager'}"
         Icon="pack://application:,,,/QEMUManager.ico" TitleCharacterCasing="Normal"
         WindowStartupLocation="CenterScreen" Width="1280" Height="720" MinWidth="1024" MinHeight="600">
 
@@ -23,7 +23,7 @@
             <Button Command="{Binding Path=AboutCommand}">
                 <StackPanel Orientation="Horizontal">
                     <metroIconPacks:PackIconModern Kind="HomeQuestion"/>
-                    <TextBlock Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.AboutCommand, FallbackValue=About}"
+                    <TextBlock Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.AboutCommand, FallbackValue='About'}"
                                Margin="5"/>
                 </StackPanel>
             </Button>
@@ -52,6 +52,8 @@
                     <Setter Property="MinWidth" Value="32"/>
                 </Style>
                 <Style TargetType="AccessText">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
                     <Setter Property="VerticalAlignment" Value="Center"/>
                     <Setter Property="Margin" Value="5"/>
                 </Style>
@@ -62,17 +64,17 @@
                     CommandParameter="{Binding}">
                 <StackPanel>
                     <metroIconPacks:PackIconModern Kind="Add" Foreground="MediumSeaGreen"/>
-                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.NewMachineCommand, FallbackValue=_New Machine}"/>
+                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.NewMachineCommand, FallbackValue='_New Machine'}"/>
                 </StackPanel>
             </Button>
             <Button ContextMenuService.IsEnabled="False" Margin="0" Padding="0"
                     Click="AddMachineButton_Click">
                 <Button.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.AddExistingMachineCommand, FallbackValue=_Add Existing Machine...}"
+                        <MenuItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.AddExistingMachineCommand, FallbackValue='_Add Existing Machine...'}"
                                   Command="{Binding Path=AddExistingMachineCommand}"
                                   CommandParameter="{Binding}"/>
-                        <MenuItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.ScanExistingMachineCommand, FallbackValue=_Scan Existing Machine...}"
+                        <MenuItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.ScanExistingMachineCommand, FallbackValue='_Scan Existing Machine...'}"
                                   Command="{Binding Path=ScanExistingMachineCommand}"
                                   CommandParameter="{Binding}"/>
                     </ContextMenu>
@@ -85,23 +87,43 @@
                 </AccessText>
             </Button>
             <Button>
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedMachine}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                
                 <StackPanel>
                     <metroIconPacks:PackIconModern Kind="Edit" Foreground="DeepSkyBlue"/>
-                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.EditMachineSettingsCommand, FallbackValue=Edit Machine Settings}"/>
+                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.EditMachineSettingsCommand, FallbackValue='Edit Machine Settings'}"/>
                 </StackPanel>
             </Button>
             <Separator/>
             <Button>
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedMachine}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                
                 <StackPanel>
                     <metroIconPacks:PackIconModern Kind="ControlPlay" Foreground="Green"/>
-                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.RunMachineCommand, FallbackValue=Run Machine}"/>
+                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.RunMachineCommand, FallbackValue='Run Machine'}"/>
                 </StackPanel>
             </Button>
             <Separator/>
             <Button>
                 <StackPanel>
                     <metroIconPacks:PackIconModern Kind="Settings" Foreground="DarkOrange"/>
-                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.OptionsCommand, FallbackValue=Options}"/>
+                    <AccessText Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.OptionsCommand, FallbackValue='Options'}"/>
                 </StackPanel>
             </Button>
             <Separator/>
@@ -129,7 +151,7 @@
         <GridSplitter Grid.Row="1" Grid.Column="1" ResizeBehavior="PreviousAndNext" Width="3"/>
 
         <TabControl Grid.Row="1" Grid.Column="2" metro:TabControlHelper.Underlined="TabPanel">
-            <TabItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.InformationTab, FallbackValue=Information}">
+            <TabItem Header="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=MainWindow.InformationTab, FallbackValue='Information'}">
                 <!--TODO-->
             </TabItem>
         </TabControl>

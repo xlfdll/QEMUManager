@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:QEMUManager"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageTitle, FallbackValue=New Machine Wizard - Welcome}"
+      Title="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageTitle, FallbackValue='New Machine Wizard - Welcome'}"
       Width="1024" Height="576">
 
     <Page.Resources>
@@ -16,30 +16,46 @@
         <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
             <Setter Property="FontSize" Value="16"/>
         </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
     </Page.Resources>
 
-    <Grid Margin="30">
+    <Grid Margin="30" Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="32" Padding="0,20"
-                   Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageHeader, FallbackValue=Welcome to the New Machine Wizard}"/>
+                   Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageHeader, FallbackValue='Welcome to the New Machine Wizard'}"/>
         <TextBlock Grid.Row="1" Padding="0,10">
             <TextBlock Text="{Binding Path=Architectures.Count}"/>
-            <TextBlock Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageInstructions, FallbackValue=QEMU system architectures are available. Which one would you like to use?}"/>
+            <TextBlock Text="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageInstructions, FallbackValue='QEMU system architectures are available. Enter the machine name, and select an architecture below.'}"/>
         </TextBlock>
 
         <Grid Grid.Row="2" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageSystemArchitecture, FallbackValue=System Architecture}"/>
-            <ComboBox Grid.Column="1" ItemsSource="{Binding Path=Architectures}" Margin="10,0"/>
+            <Label Grid.Column="0" Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.$WelcomePageMachineName, FallbackValue='Machine Name'}"/>
+            <TextBox Grid.Column="1" Text="{Binding Path=MachineName, UpdateSourceTrigger=PropertyChanged}" Margin="10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="3" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Labels"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=NewMachineWizard.WelcomePageSystemArchitecture, FallbackValue='System Architecture'}"/>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Path=Architectures}"
+                      SelectedIndex="{Binding Path=SelectedArchitectureIndex}"
+                      Margin="10,0"/>
         </Grid>
     </Grid>
 </Page>

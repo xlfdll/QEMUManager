@@ -35,7 +35,7 @@
                 </Style>
             </StackPanel.Resources>
 
-            <Button Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.BackCommand, FallbackValue=&lt; _Back}"
+            <Button Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.BackCommand, FallbackValue='&lt; _Back'}"
                     Command="{Binding Path=BackCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                     Margin="10,10,5,10"/>
@@ -47,15 +47,15 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Path=IsLastPage, RelativeSource={RelativeSource AncestorType=Window}}"
                                          Value="True">
-                                <Setter Property="Content" Value="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.FinishCommand, FallbackValue=_Finish}"/>
+                                <Setter Property="Content" Value="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.FinishCommand, FallbackValue='_Finish'}"/>
                             </DataTrigger>
                         </Style.Triggers>
 
-                        <Setter Property="Content" Value="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.NextCommand, FallbackValue=_Next &gt;}"/>
+                        <Setter Property="Content" Value="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.NextCommand, FallbackValue='_Next &gt;'}"/>
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.CancelCommand, FallbackValue=_Cancel}"
+            <Button Content="{Binding Path=LanguageDictionary, Converter={StaticResource LocalizationValueConverter}, ConverterParameter=WizardWindow.CancelCommand, FallbackValue='_Cancel'}"
                     Command="{Binding Path=CancelCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                     Margin="10"/>

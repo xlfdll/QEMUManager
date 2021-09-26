@@ -25,6 +25,13 @@ namespace Xlfdll.Windows.Presentation.Dialogs
                 throw new ArgumentException("Page URI list cannot be null or empty.");
             }
 
+            this.SetBinding(WizardWindow.BeforeGoBackProperty, "BeforeGoBack");
+            this.SetBinding(WizardWindow.BeforeGoNextProperty, "BeforeGoNext");
+            this.SetBinding(WizardWindow.BeforeCancelProperty, "BeforeCancel");
+            this.SetBinding(WizardWindow.CanGoBackProperty, "CanGoBack");
+            this.SetBinding(WizardWindow.CanGoNextProperty, "CanGoNext");
+            this.SetBinding(WizardWindow.CanCancelProperty, "CanCancel");
+
             this.PageURIs = new ObservableCollection<Uri>(pageURIs);
             this.SelectedPageIndex = 0;
         }
@@ -36,6 +43,10 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         {
             this.CenterWindowToScreen();
         }
+
+        // The LoadCompleted and DataContextChanged event handlers here are required to update Page's DataContext
+        // Due to WPF content isolation, DataContext will not be passed through Frame to Pages automatically
+        // (Frame-Page was originally designed to run in restricted environment like Internet Explorer)
 
         private void PageFrame_LoadCompleted(object sender, NavigationEventArgs e)
         {
@@ -59,13 +70,6 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             }
             private set
             {
-                this.CanGoBack = WizardWindow.TrueFunction;
-                this.CanGoNext = WizardWindow.TrueFunction;
-                this.CanCancel = WizardWindow.TrueFunction;
-                this.BeforeGoBack = WizardWindow.TrueFunction;
-                this.BeforeGoNext = WizardWindow.TrueFunction;
-                this.BeforeCancel = WizardWindow.TrueFunction;
-
                 this.SetValue(SelectedPageIndexProperty, value);
                 this.SetValue(SelectedPageURIProperty, this.PageURIs[value]);
                 this.SetValue(IsLastPageProperty, value == this.PageURIs.Count - 1);
@@ -89,6 +93,48 @@ namespace Xlfdll.Windows.Presentation.Dialogs
         public static DependencyProperty IsLastPageProperty = DependencyProperty.Register
             ("IsLastPage", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(false));
 
+        #region Wizard States
+
+        public Boolean BeforeGoBack
+        {
+            get => (Boolean)this.GetValue(BeforeGoBackProperty);
+        }
+        public Boolean BeforeGoNext
+        {
+            get => (Boolean)this.GetValue(BeforeGoNextProperty);
+        }
+        public Boolean BeforeCancel
+        {
+            get => (Boolean)this.GetValue(BeforeCancelProperty);
+        }
+        public Boolean CanGoBack
+        {
+            get => (Boolean)this.GetValue(CanGoBackProperty);
+        }
+        public Boolean CanGoNext
+        {
+            get => (Boolean)this.GetValue(CanGoNextProperty);
+        }
+        public Boolean CanCancel
+        {
+            get => (Boolean)this.GetValue(CanCancelProperty);
+        }
+
+        public static DependencyProperty BeforeGoBackProperty = DependencyProperty.Register
+            ("BeforeGoBack", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(true));
+        public static DependencyProperty BeforeGoNextProperty = DependencyProperty.Register
+            ("BeforeGoNext", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(true));
+        public static DependencyProperty BeforeCancelProperty = DependencyProperty.Register
+            ("BeforeCancel", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(true));
+        public static DependencyProperty CanGoBackProperty = DependencyProperty.Register
+            ("CanGoBack", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(true));
+        public static DependencyProperty CanGoNextProperty = DependencyProperty.Register
+            ("CanGoNext", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(true));
+        public static DependencyProperty CanCancelProperty = DependencyProperty.Register
+            ("CanCancel", typeof(Boolean), typeof(WizardWindow), new PropertyMetadata(true));
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -102,7 +148,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             {
                 if (window is WizardWindow wizard)
                 {
-                    if (this.BeforeGoBack())
+                    if (this.BeforeGoBack)
                     {
                         wizard.SelectedPageIndex--;
                     }
@@ -112,7 +158,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             {
                 if (window is WizardWindow wizard)
                 {
-                    return wizard.SelectedPageIndex > 0 && wizard.CanGoBack();
+                    return wizard.SelectedPageIndex > 0 && wizard.CanGoBack;
                 }
 
                 return false;
@@ -125,7 +171,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             {
                 if (window is WizardWindow wizard)
                 {
-                    if (this.BeforeGoNext())
+                    if (this.BeforeGoNext)
                     {
                         if (!wizard.IsLastPage)
                         {
@@ -144,7 +190,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             {
                 if (window is WizardWindow wizard)
                 {
-                    return wizard.CanGoNext();
+                    return wizard.CanGoNext;
                 }
 
                 return false;
@@ -157,7 +203,7 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             {
                 if (window is WizardWindow wizard)
                 {
-                    if (wizard.BeforeCancel())
+                    if (wizard.BeforeCancel)
                     {
                         wizard.DialogResult = false;
 
@@ -169,32 +215,12 @@ namespace Xlfdll.Windows.Presentation.Dialogs
             {
                 if (window is WizardWindow wizard)
                 {
-                    return wizard.CanCancel();
+                    return wizard.CanCancel;
                 }
 
                 return false;
             }
         );
-
-        #endregion
-
-        #region Condition Methods
-
-        public Func<Boolean> CanGoBack { get; set; }
-            = WizardWindow.TrueFunction;
-        public Func<Boolean> CanGoNext { get; set; }
-            = WizardWindow.TrueFunction;
-        public Func<Boolean> CanCancel { get; set; }
-            = WizardWindow.TrueFunction;
-        public Func<Boolean> BeforeGoBack { get; set; }
-            = WizardWindow.TrueFunction;
-        public Func<Boolean> BeforeGoNext { get; set; }
-            = WizardWindow.TrueFunction;
-        public Func<Boolean> BeforeCancel { get; set; }
-            = WizardWindow.TrueFunction;
-
-        public static readonly Func<Boolean> TrueFunction
-            = () => { return true; };
 
         #endregion
     }

@@ -39,15 +39,15 @@ namespace QEMUManager
         private String _status;
         private Boolean _isBusy;
 
-        public Boolean IsBusy
-        {
-            get => _isBusy;
-            set => SetField(ref _isBusy, value);
-        }
         public String Status
         {
             get => _status;
             set => SetField(ref _status, value);
+        }
+        public Boolean IsBusy
+        {
+            get => _isBusy;
+            set => SetField(ref _isBusy, value);
         }
 
         #endregion
@@ -72,7 +72,7 @@ namespace QEMUManager
         (
             (MainViewModel mainViewModel) =>
             {
-                NewMachineWizardViewModel newMachineWizardViewModel = new NewMachineWizardViewModel();
+                NewMachineWizardViewModel newMachineWizardViewModel = new NewMachineWizardViewModel(App.QEMUInstallation);
 
                 WizardWindow wizardWindow = new WizardWindow
                     (new Uri[]
@@ -86,7 +86,7 @@ namespace QEMUManager
 
                 if (wizardWindow.ShowDialog() == true)
                 {
-                    
+
                 }
             }
         );

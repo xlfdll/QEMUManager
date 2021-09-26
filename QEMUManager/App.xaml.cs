@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows;
 
 using ControlzEx.Theming;
 
+using QEMUManager.Models;
+
 using Xlfdll.Diagnostics;
+using Xlfdll.Localization;
 
 namespace QEMUManager
 {
@@ -15,20 +19,41 @@ namespace QEMUManager
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            AppSettings.Create(); // Create settings file if it doesn't exist
+
+            App.Settings = AppSettings.Load();
+            App.L10n = new L10n();
+
             if (!App.StartupMutex.WaitOne(TimeSpan.Zero, true))
             {
-                MessageBox.Show("Another instance of QEMU Manager is already running.",
-                    "QEMU Manager",
+                MessageBox.Show(App.L10n.CurrentLanguageDictionary.GetTranslatedString
+                    ("App.AnotherInstanceRunningWarning",
+                    "Another instance of QEMU Manager is already running."),
+                    App.L10n.CurrentLanguageDictionary.GetTranslatedString
+                    ("App.Title", "QEMU Manager"),
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
 
                 Application.Current.Shutdown();
             }
 
-            AppSettings.Create(); // Create settings file if it doesn't exist
+            try
+            {
+                App.QEMUInstallation = QEMUChecker.Check(App.Settings.QEMULocation);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show(String.Format(App.L10n.CurrentLanguageDictionary.GetTranslatedString
+                    ("App.QEMUInstallationNotFoundWarning",
+                    "The location of QEMU installation in settings is not found.{0}Please set the correct location in Options dialog."),
+                    Environment.NewLine),
+                    App.L10n.CurrentLanguageDictionary.GetTranslatedString
+                    ("App.Title", "QEMU Manager"),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
 
-            App.Settings = new AppSettings();
-            App.L10n = new L10n();
+                // TODO: Open Options in MainWindow
+            }
 
             ThemeManager.Current.ChangeTheme(this, $"{App.Settings.ThemeAccent}.{App.Settings.ThemeColor}");
 
@@ -46,6 +71,8 @@ namespace QEMUManager
         public static AppSettings Settings { get; private set; }
         public static L10n L10n { get; private set; }
         public static AssemblyMetadata Metadata => AssemblyMetadata.EntryAssemblyMetadata;
+
+        public static QEMUInstallation QEMUInstallation { get; internal set; }
 
         #endregion
     }

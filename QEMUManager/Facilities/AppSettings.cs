@@ -3,6 +3,7 @@ using System.IO;
 
 using Newtonsoft.Json;
 
+using Xlfdll;
 using Xlfdll.Text;
 
 using QEMUManager.Properties;
@@ -35,7 +36,7 @@ namespace QEMUManager
         #region Settings
 
         public String QEMULocation { get; set; }
-            = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "qemu");
+            = Path.Combine(SpecialFolders.ProgramFilesBasedOnProcess, "qemu");
         public String MachineLocation { get; set; }
             = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "QEMU VMs");
         public String DisplayLanguage { get; set; } = "en-us";
